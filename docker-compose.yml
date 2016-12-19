@@ -1,0 +1,17 @@
+version: '2'
+services:
+  db:
+    image: postgres:9.4.1
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    ports:
+      - "3000:3000"
+    links:
+      - db
+    volumes:
+      - .:/webapp/hd_app/:rw
+    env_file:
+      - .env.dev
