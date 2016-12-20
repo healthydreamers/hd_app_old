@@ -8,6 +8,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
+gem 'execjs' # https://github.com/aws/opsworks-cookbooks/issues/258#issuecomment-88377353
+gem 'therubyracer', :platforms => :ruby # https://github.com/aws/opsworks-cookbooks/issues/258#issuecomment-88377353
 # gem 'redis', '~> 3.0'
 
 # Custom
@@ -25,8 +27,4 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
-
-group :production do
-  gem 'pg', '~> 0.18'
 end
