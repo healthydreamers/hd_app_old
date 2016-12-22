@@ -20,6 +20,14 @@ gem 'annotate', github: 'ctran/annotate_models'
 gem 'devise'
 gem 'simple_form'
 
+# Deploy
+group :development, :production do
+  gem 'capistrano', '~> 3.6.1'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-rails', '~> 1.1.1'
+  gem 'capistrano-rbenv', github: "capistrano/rbenv"
+end
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
