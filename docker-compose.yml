@@ -1,17 +1,49 @@
 version: '2'
 services:
-  db:
-    image: postgres:9.4.1
-    ports:
-      - "5432:5432"
-  web:
+  app:
+    container_name: hd_app
     build: .
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: bash -c 'rm -f tmp/pids/server.pid && bundle install && bundle exec rails s -b "0.0.0.0"'
     ports:
       - "3000:3000"
-    links:
-      - db
+    depends_on:
+      - postgres
+      - redis
     volumes:
-      - .:/webapp/hd_app/:rw
+      - .:/webapps/hd_app:rw
     env_file:
       - .env.dev
+  postgres:
+    container_name: hd_postgres
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: 'hd'
+      POSTGRES_PASSWORD: 'hd'
+
+  redis:
+    container_name: hd_redis
+    image: 'redis:3.2-alpine'
+    command: redis-server --requirepass hd
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis:/var/lib/redis/data'
+
+  # sidekiq:
+  #   depends_on:
+  #     - postgres
+  #     - redis
+  #   build: .
+  #   command: sidekiq -C config/sidekiq.yml
+  #   volumes:
+  #     - '.:/webapps/hd_app'
+  #   env_file:
+  #     - '.env.dev'
+
+volumes:
+  redis:
+  postgres:

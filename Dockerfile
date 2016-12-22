@@ -1,16 +1,15 @@
 FROM ruby:2.3.1
 MAINTAINER Ismail Mechbal <ismail@werunik.com>
 
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     build-essential \
-    nodejs \
-    qt5-default \
-    wget\
-    python2.7-dev \
-    vim
+    libpq-dev \
+    nodejs
 
-ENV APP_HOME /webapp/hd_app
+# fucking debian installs `node` as `nodejs`
+RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
+
+ENV APP_HOME /webapps/hd_app
 RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
