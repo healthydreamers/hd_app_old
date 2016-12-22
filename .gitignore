@@ -13,6 +13,7 @@
 !/log/.keep
 !/tmp/.keep
 config/database.yml
+.env.dev # Docker environment
 
 # Ignore Byebug command history file.
 .byebug_history
