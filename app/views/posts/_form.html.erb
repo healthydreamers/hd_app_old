@@ -1,0 +1,12 @@
+<%= simple_form_for(@post) do |f| %>
+  <%= f.error_notification %>
+  <div>
+    <%= f.input :title %>
+    <%= f.input :url %>
+    <%= f.association :category %>
+    <%= f.trix_editor :body %>
+  </div>
+  <div>
+    <%= f.button :submit %>
+  </div>
+<% end %>

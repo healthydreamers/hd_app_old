@@ -1,0 +1,5 @@
+<div><%= @post.title %></div>
+<div><%= link_to @post.url, @post.url %></div>
+<div><%= @post.category.name %></div>
+<div><%=h raw @post.body %></div>
+<div>Added <%= time_ago_in_words @post.created_at %></div>

@@ -18,6 +18,7 @@ gem 'redis', '~> 3.0'
 # Custom
 gem 'annotate', github: 'ctran/annotate_models'
 gem 'devise'
+gem 'trix'
 gem 'simple_form'
 
 # Deploy

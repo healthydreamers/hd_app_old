@@ -1,5 +1,5 @@
 set :stage, :production
-server '144.217.160.24', user: 'deploy', roles: %w{web app}
+server '144.217.160.24', user: 'deploy', roles: %w{web app}, port: 25000
 
 # Custom SSH Options
 # ==================
