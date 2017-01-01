@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc)
+    @posts_per_category = @posts.group_by { |t| t.category.name }
   end
 
   def show
@@ -31,4 +32,5 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body, :url, :category_id)
   end
+
 end

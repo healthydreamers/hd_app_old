@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'posts#index'
-  resources :posts
+  root to: "dashboard#index"
+  resources :posts, except: [:destroy]
+  resources :categories, only: [:show]
 end
