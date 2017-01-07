@@ -5,10 +5,10 @@
     <%= csrf_meta_tags %>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.6.1/tachyons.min.css" rel="stylesheet" >
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
     <%= render partial: "partials/header/header" %>
     <%= yield %>
+    <%= javascript_include_tag 'application', async: Rails.env.production? %>
   </body>
 </html>
